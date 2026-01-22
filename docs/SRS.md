@@ -237,10 +237,10 @@ public interface KeycloakRestClientFactory {
 
 ### Фаза 1: Базовая структура проекта
 
-- [ ] Создать Gradle проект со структурой Spring Boot стартера
-- [ ] Настроить зависимости (spring-boot-starter-oauth2-client, spring-boot-autoconfigure)
-- [ ] Создать базовые классы конфигурации
-- [ ] Настроить spring.factories / AutoConfiguration.imports
+- [x] Создать Gradle проект со структурой Spring Boot стартера
+- [x] Настроить зависимости (spring-boot-starter-oauth2-client, spring-boot-autoconfigure)
+- [x] Создать базовые классы конфигурации
+- [x] Настроить spring.factories / AutoConfiguration.imports
 
 ### Фаза 2: Core функциональность
 
