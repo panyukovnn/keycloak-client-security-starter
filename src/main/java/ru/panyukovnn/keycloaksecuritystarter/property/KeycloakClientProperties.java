@@ -1,7 +1,6 @@
 package ru.panyukovnn.keycloaksecuritystarter.property;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.util.AntPathMatcher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +50,7 @@ public class KeycloakClientProperties {
         /**
          * Список URL паттернов (поддерживает Ant-style patterns).
          */
-        private List<AntPathMatcher> patterns = new ArrayList<>();
+        private List<String> patterns = new ArrayList<>();
 
         public String getRegistration() {
             return registration;
@@ -61,11 +60,11 @@ public class KeycloakClientProperties {
             this.registration = registration;
         }
 
-        public List<AntPathMatcher> getPatterns() {
+        public List<String> getPatterns() {
             return patterns;
         }
 
-        public void setPatterns(List<AntPathMatcher> patterns) {
+        public void setPatterns(List<String> patterns) {
             this.patterns = patterns;
         }
     }

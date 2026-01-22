@@ -244,20 +244,20 @@ public interface KeycloakRestClientFactory {
 
 ### Фаза 2: Core функциональность
 
-- [ ] Реализовать `KeycloakClientProperties` для чтения конфигурации
-- [ ] Реализовать `ClientRegistrationResolver` интерфейс и URL-based реализацию
-- [ ] Реализовать `KeycloakOAuth2Interceptor` на базе `ClientHttpRequestInterceptor`
-- [ ] Интегрировать с `OAuth2AuthorizedClientManager` для получения/кеширования токенов
+- [x] Реализовать `KeycloakClientProperties` для чтения конфигурации
+- [x] Реализовать `ClientRegistrationResolver` интерфейс и URL-based реализацию
+- [x] Реализовать `KeycloakOAuth2Interceptor` на базе `ClientHttpRequestInterceptor`
+- [x] Интегрировать с `OAuth2AuthorizedClientManager` для получения/кеширования токенов
 
 ### Фаза 3: RestClient интеграция
 
-- [ ] Создать `KeycloakRestClientFactory` с методом `configure(RestClient.Builder, String registrationId)`
-- [ ] Обеспечить совместимость со стандартным `RestClient.Builder` (сохранение общих конфигураций)
-- [ ] Добавить автоконфигурацию для регистрации интерсептора
+- [x] Создать `KeycloakRestClientFactory` с методом `configure(RestClient.Builder, String registrationId)`
+- [x] Обеспечить совместимость со стандартным `RestClient.Builder` (сохранение общих конфигураций)
+- [x] Добавить автоконфигурацию для регистрации интерсептора
 - [ ] Реализовать `RestClientCustomizer` для автоматического применения интерсептора (опционально)
-- [ ] Добавить логирование событий получения токена
+- [x] Добавить логирование событий получения токена
 
-### Фаза 5: Тестирование и документация
+### Фаза 4: Тестирование и документация
 
 - [ ] Unit тесты для всех компонентов
 - [ ] Integration тесты с Testcontainers (Keycloak)
