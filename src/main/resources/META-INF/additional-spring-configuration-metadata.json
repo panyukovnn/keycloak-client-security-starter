@@ -1,0 +1,20 @@
+{
+  "properties": [
+    {
+      "name": "keycloak-starter.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Включает или отключает автоконфигурацию Keycloak OAuth2 стартера.",
+      "defaultValue": true
+    },
+    {
+      "name": "keycloak-starter.default-registration",
+      "type": "java.lang.String",
+      "description": "ID регистрации OAuth2 клиента по умолчанию, используемый когда не найден маппинг для URL."
+    },
+    {
+      "name": "keycloak-starter.url-mappings",
+      "type": "java.util.List<ru.panyukovnn.keycloaksecuritystarter.autoconfigure.KeycloakClientProperties$UrlMapping>",
+      "description": "Список маппингов URL паттернов на регистрации OAuth2 клиентов."
+    }
+  ]
+}

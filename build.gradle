@@ -18,7 +18,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -28,3 +30,6 @@ tasks.named('test') {
     jvmArgs("-XX:+EnableDynamicAgentLoading")
     systemProperty "file.encoding", "UTF-8"
 }
+
+bootJar.enabled = false
+jar.archiveClassifier = ''
