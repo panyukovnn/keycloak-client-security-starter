@@ -50,7 +50,7 @@ public class KeycloakOAuth2Interceptor implements ClientHttpRequestInterceptor {
     private OAuth2AuthorizedClient authorizeClient() {
         OAuth2AuthorizeRequest authorizeRequest = OAuth2AuthorizeRequest
                 .withClientRegistrationId(registrationId)
-                .principal("keycloak-starter")
+                .principal(registrationId)
                 .build();
 
         return authorizedClientManager.authorize(authorizeRequest);
