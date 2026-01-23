@@ -1,19 +1,17 @@
 package ru.panyukovnn.keycloaksecuritystarter;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.oauth2.client.AuthorizedClientServiceOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProvider;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProviderBuilder;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizedClientManager;
-import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
 import org.springframework.web.client.RestClient;
 import ru.panyukovnn.keycloaksecuritystarter.factory.KeycloakRestClientFactory;
 import ru.panyukovnn.keycloaksecuritystarter.factory.impl.KeycloakRestClientFactoryImpl;
@@ -30,27 +28,28 @@ import ru.panyukovnn.keycloaksecuritystarter.resolver.impl.UrlBasedClientResolve
 @EnableConfigurationProperties(KeycloakClientProperties.class)
 public class KeycloakClientSecurityStarterAutoConfiguration {
 
-    private static final Logger LOG = LoggerFactory.getLogger(KeycloakClientSecurityStarterAutoConfiguration.class);
-
     /**
      * Создает менеджер авторизованных OAuth2 клиентов для client_credentials flow.
+     * Использует AuthorizedClientServiceOAuth2AuthorizedClientManager, который предназначен
+     * для service-to-service коммуникации и не требует Principal.
      *
      * @param clientRegistrationRepository репозиторий регистраций клиентов
-     * @param authorizedClientRepository репозиторий авторизованных клиентов
+     * @param authorizedClientService сервис авторизованных клиентов
      * @return менеджер авторизованных клиентов
      */
     @Bean
     @ConditionalOnMissingBean
     public OAuth2AuthorizedClientManager authorizedClientManager(
             ClientRegistrationRepository clientRegistrationRepository,
-            OAuth2AuthorizedClientRepository authorizedClientRepository) {
+            OAuth2AuthorizedClientService authorizedClientService) {
         OAuth2AuthorizedClientProvider authorizedClientProvider = OAuth2AuthorizedClientProviderBuilder.builder()
                 .clientCredentials()
                 .build();
 
-        DefaultOAuth2AuthorizedClientManager authorizedClientManager = new DefaultOAuth2AuthorizedClientManager(
-                clientRegistrationRepository,
-                authorizedClientRepository);
+        AuthorizedClientServiceOAuth2AuthorizedClientManager authorizedClientManager =
+                new AuthorizedClientServiceOAuth2AuthorizedClientManager(
+                        clientRegistrationRepository,
+                        authorizedClientService);
         authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
 
         return authorizedClientManager;
